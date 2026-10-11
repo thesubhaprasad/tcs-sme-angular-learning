@@ -1,10 +1,10 @@
-# Angular Product Catalog · Day 2
+# Angular Product Catalog · Day 3
 
 Trainer: Subha Prasad, TCS Assets Consultant (C3A).
-13 October 2026, 10:00–11:00 AM IST, Microsoft Teams.
-Branch: `tcs-sme-angular/day-two`.
+14 October 2026, 10:00–11:00 AM IST, Microsoft Teams.
+Branch: `tcs-sme-angular/day-three`.
 
-Reusable components, input signals, projection, pipes and template control flow.
+Output events, signals, computed filters, one-product-per-entry cart and a template-driven practice note.
 
 ## Setup and run
 
@@ -21,38 +21,39 @@ Open http://127.0.0.1:4200. From this folder, run:
 ```sh
 npm run check:day-one
 npm run check:day-two
+npm run check:day-three
 npm run build
 ```
 
-The checks run pure JavaScript/TypeScript lesson assertions. Build checks Angular templates and TypeScript. The browser workflow has also been checked; see training/angular/day-2/VALIDATION.md.
+The checks run pure JavaScript/TypeScript lesson assertions. Build checks Angular templates and TypeScript. The browser workflow has also been checked; see training/angular/day-3/VALIDATION.md.
 
 ## Start state and demonstration
 
 4 products: Notebook ₹80 in stock, Pen ₹20 out of stock, Bag ₹500 in stock, Bottle ₹250 out of stock. Summary: 4 total, 2 in stock, 2 out of stock.
-
+Add Notebook and Bag: cart 2 items, ₹580. Remove Notebook: 1 item, ₹500. Out-of-stock and duplicate additions are blocked. Search trims whitespace and ignores case.
 
 
 
 ## Learner exercise
 
-A brand on every card
+A category visibility checkbox
 
-- Add brand to the product objects.
-- Add showBrand = input(true) to the card.
-- Forward it from ProductList.
-- Show the brand with @if.
+- Create showCategory = signal(true).
+- Bind a labelled checkbox.
+- Pass the signal value into ProductList.
+- Prices stay visible in both states.
 
-The Product interface already includes optional brand. Use fictional brand text. Learners add the field, input forwarding and display. The starter intentionally leaves that work.
+Learner task: add showCategory = signal(true) to App and a labelled checkbox with [checked] and a change handler reading its checked property. Pass showCategory() to ProductList, which already forwards it. Prices and cart actions must continue to work when categories are hidden. The starter intentionally leaves this task for learners.
 
 ## Knowledge check
 
-- 1  How does a child receive data?
-- 2  Can it set an InputSignal?
-- 3  Which placeholder projects nested content?
-- 4  What does track identify?
-- 5  Does @if insert zero as text?
+- 1  When does a (click) method call run?
+- 2  How do you read a signal?
+- 3  Which checkbox property is boolean?
+- 4  Why return a new cart array?
+- 5  Who owns shared cart state?
 
-Answers: input, no, ng-content, stable item identity, no. Also ask whether track becomes a child input: no.
+Answers: 1 After the click. 2 Call the signal getter with (). 3 checked. 4 Avoid mutating the old array and supply a new value to reactive consumers. 5 App, the nearest shared parent. For the form, FormsModule and ngSubmit handle the default browser navigation.
 
 ## Project reading order
 
@@ -63,7 +64,7 @@ Answers: input, no, ng-content, stable item identity, no. Also ask whether track
 
 ## Teaching material
 
-PPT, trainer notes and validation report: training/angular/day-2/ from the repository root (../../training/angular/day-2/ from this project folder). Coverage mapping: training/angular/TOPIC_COVERAGE.md. Optional reference topics supplement the one-hour lesson. The official TCS E1 syllabus was not supplied; course IDs are references provided by the trainer.
+PPT, trainer notes and validation report: training/angular/day-3/ from the repository root (../../training/angular/day-3/ from this project folder). Coverage mapping: training/angular/TOPIC_COVERAGE.md. Optional reference topics supplement the one-hour lesson. The official TCS E1 syllabus was not supplied; course IDs are references provided by the trainer.
 
 ## Local production preview
 
@@ -77,10 +78,9 @@ Open http://127.0.0.1:8080. Day 5 uses hash routes for a simple static preview. 
 ## Sources
 
 - https://angular.dev/guide/components
+- https://angular.dev/guide/signals
+- https://angular.dev/guide/templates/event-listeners
+- https://angular.dev/guide/components/outputs
+- https://angular.dev/guide/templates/binding
+- https://angular.dev/guide/forms/template-driven-forms
 - https://angular.dev/guide/components/inputs
-- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide
-- https://angular.dev/guide/components/content-projection
-- https://angular.dev/guide/templates/control-flow
-- https://angular.dev/guide/templates
-- https://angular.dev/guide/templates/pipes
-- https://angular.dev/guide/components/lifecycle

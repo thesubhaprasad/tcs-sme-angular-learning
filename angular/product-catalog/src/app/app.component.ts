@@ -1,18 +1,35 @@
-import { Component } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { PageHeaderComponent } from './components/page-header.component';
 import { SectionComponent } from './components/section.component';
 import { ProductSummaryComponent } from './components/product-summary.component';
 import { ProductListComponent } from './components/product-list.component';
+import { FilterBarComponent } from './components/filter-bar.component';
+import { CartPanelComponent } from './components/cart-panel.component';
+import { PracticeNoteComponent } from './components/practice-note.component';
 import { PRODUCTS } from './data/products';
-// Day 2 configuration changes in source code. Browser controls arrive on Day 3.
+import type { Product } from './models/product.model';
+// App is the nearest common owner of shared filters and cart state.
 @Component({ selector: 'app-root', standalone: true,
-  imports: [PageHeaderComponent, SectionComponent, ProductSummaryComponent, ProductListComponent],
-  templateUrl: './app.component.html' })
+  imports: [PageHeaderComponent, SectionComponent, ProductSummaryComponent, ProductListComponent,
+    FilterBarComponent, CartPanelComponent, PracticeNoteComponent], templateUrl: './app.component.html' })
 export class AppComponent {
-  readonly products = PRODUCTS;
-  readonly selectedStock: string = 'All'; // Try 'In stock' in the guided demo.
-  readonly showCategory = true; // Try false; prices remain visible.
-  get visibleProducts() {
-    return this.selectedStock === 'In stock' ? this.products.filter(p => p.inStock) : this.products;
+  readonly products = signal<readonly Product[]>(PRODUCTS);
+  readonly search = signal(''); readonly category = signal('All');
+  readonly onlyInStock = signal(false); readonly cart = signal<readonly Product[]>([]);
+  // computed reruns when a signal it reads changes. It stores no duplicate editable state.
+  readonly visibleProducts = computed(() => {
+    const text = this.search().trim().toLowerCase();
+    return this.products().filter(product => product.name.toLowerCase().includes(text) &&
+      (this.category() === 'All' || product.category === this.category()) &&
+      (!this.onlyInStock() || product.inStock));
+  });
+  readonly cartTotal = computed(() => this.cart().reduce((sum, p) => sum + p.price, 0));
+  addToCart(product: Product) {
+    if (!product.inStock) return;
+    // Return a new array and keep one entry per product.
+    this.cart.update(items => items.some(p => p.id === product.id) ? items : [...items, product]);
   }
+  removeFromCart(id: string) { this.cart.update(items => items.filter(p => p.id !== id)); }
+  clearCart() { this.cart.set([]); }
+  resetFilters() { this.search.set(''); this.category.set('All'); this.onlyInStock.set(false); }
 }

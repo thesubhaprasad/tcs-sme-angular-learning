@@ -1,14 +1,18 @@
 <main class="page">
-  <app-page-header day="02" title="Product Catalog with reusable components"
-    subtitle="Inputs, content projection, conditions and stable lists." date="13 October 2026" />
-  <app-product-summary [products]="products" />
+  <app-page-header day="03" title="Product Catalog with a cart"
+    subtitle="Signals, computed filters, output events and a local form." date="14 October 2026" />
+  <app-product-summary [products]="products()" />
   <app-section title="Shop products" headingId="catalog-heading">
-    <!-- The wrapper projects both this paragraph and the reusable product list. -->
-    <p class="stock-note">Stock selection: {{ selectedStock }}</p>
-    <app-product-list [products]="visibleProducts" [showCategory]="showCategory" />
+    <app-filter-bar [search]="search()" [category]="category()" [onlyInStock]="onlyInStock()"
+      (searchChange)="search.set($event)" (categoryChange)="category.set($event)"
+      (stockChange)="onlyInStock.set($event)" (reset)="resetFilters()" />
+    <p class="result-count" role="status">Showing {{ visibleProducts().length }} of {{ products().length }} products</p>
+    <app-product-list [products]="visibleProducts()" [cart]="cart()" (add)="addToCart($event)" />
   </app-section>
-  <app-section title="Learning notes" headingId="notes-heading">
-    <p>Inputs travel down. The same Section wrapper displays different nested content.</p>
+  <app-section title="Your cart" headingId="cart-heading">
+    <app-cart-panel [cart]="cart()" [total]="cartTotal()" (remove)="removeFromCart($event)" (clear)="clearCart()" />
   </app-section>
-  <aside class="exercise"><h2>Your turn</h2><p>Add a brand and a showBrand input, then forward it through ProductList.</p></aside>
+  <app-section title="Form practice" headingId="note-heading"><app-practice-note /></app-section>
+  <aside class="exercise"><h2>Your turn</h2><p>Add a Show categories checkbox using a boolean signal.</p>
+    <p>Filters preserve the cart. Local state resets on reload.</p></aside>
 </main>
