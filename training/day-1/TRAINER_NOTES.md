@@ -261,6 +261,6 @@ Source: https://angular.dev/guide/components
 
 Time: 0 minute(s) · optional reference.
 
-Angular22.2.2 and TypeScript6.0.3 are pinned. The React Vite setup is in the separate tcs-sme-reactjs-learning repository. Angular commands run in angular/product-catalog.
+Angular22.2.2 and TypeScript6.0.3 are pinned. The React Vite setup is in the separate tcs-sme-reactjs-learning repository. Angular commands run in the repository root.
 
 Source: https://angular.dev/reference/versions
