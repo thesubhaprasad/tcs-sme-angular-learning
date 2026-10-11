@@ -1,0 +1,13 @@
+{
+  "sha256": "6d62d94b84523988b3d75171a56476c0e9bc6082814a1811a32a6edf0acb42a7",
+  "slides": 34,
+  "packageIntegrity": "pass",
+  "layoutGeometry": "pass",
+  "artifactToolImport": "pass",
+  "visualReview": "Every slide rendered and individually inspected at 1280 \u00d7 720.",
+  "fontFamilies": [
+    "Arial",
+    "Consolas"
+  ],
+  "nativePowerPointRenderingVerified": false
+}

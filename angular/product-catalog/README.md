@@ -1,10 +1,10 @@
-# Angular Product Catalog · Day 3
+# Angular Product Catalog · Day 4
 
 Trainer: Subha Prasad, TCS Assets Consultant (C3A).
-14 October 2026, 10:00–11:00 AM IST, Microsoft Teams.
-Branch: `tcs-sme-angular/day-three`.
+15 October 2026, 10:00–11:00 AM IST, Microsoft Teams.
+Branch: `tcs-sme-angular/day-four`.
 
-Output events, signals, computed filters, one-product-per-entry cart and a template-driven practice note.
+HttpClient, dependency injection, typed boundary validation, loading/error/empty/success states and retry.
 
 ## Setup and run
 
@@ -22,38 +22,39 @@ Open http://127.0.0.1:4200. From this folder, run:
 npm run check:day-one
 npm run check:day-two
 npm run check:day-three
+npm run check:day-four
 npm run build
 ```
 
-The checks run pure JavaScript/TypeScript lesson assertions. Build checks Angular templates and TypeScript. The browser workflow has also been checked; see training/angular/day-3/VALIDATION.md.
+The checks run pure JavaScript/TypeScript lesson assertions. Build checks Angular templates and TypeScript. The browser workflow has also been checked; see training/angular/day-4/VALIDATION.md.
 
 ## Start state and demonstration
 
 4 products: Notebook ₹80 in stock, Pen ₹20 out of stock, Bag ₹500 in stock, Bottle ₹250 out of stock. Summary: 4 total, 2 in stock, 2 out of stock.
 Add Notebook and Bag: cart 2 items, ₹580. Remove Notebook: 1 item, ₹500. Out-of-stock and duplicate additions are blocked. Search trims whitespace and ignores case.
-
+Products are loaded from public/products.json through ProductService. Empty JSON array is a valid empty catalog. Missing/invalid JSON, wrong schema, duplicate IDs and HTTP failures show error state; Retry reloads the resource. Filters do not refetch.
 
 
 ## Learner exercise
 
-A category visibility checkbox
+Changing JSON and the empty state
 
-- Create showCategory = signal(true).
-- Bind a labelled checkbox.
-- Pass the signal value into ProductList.
-- Prices stay visible in both states.
+- Change Notebook’s price from 80 to 100.
+- Reload and add Notebook + Bag: ₹600.
+- Try [] and explain the success message.
+- Restore the original resource.
 
-Learner task: add showCategory = signal(true) to App and a labelled checkbox with [checked] and a change handler reading its checked property. Pass showCategory() to ProductList, which already forwards it. Prices and cart actions must continue to work when categories are hidden. The starter intentionally leaves this task for learners.
+Give learners time to change Notebook from ₹80 to ₹100. Reload, add Notebook and Bag, and expect ₹600. Try [] and explain valid empty success. Restore the original ₹80 price and four products. Optional extension: add P-105 Pencil, ₹10, Stationery, inStock true. Counts become 5/3/2 and Notebook+Bag+Pencil totals ₹590.
 
 ## Knowledge check
 
-- 1  When does a (click) method call run?
-- 2  How do you read a signal?
-- 3  Which checkbox property is boolean?
-- 4  Why return a new cart array?
-- 5  Who owns shared cart state?
+- 1  What does HttpClient.get return?
+- 2  What starts its request?
+- 3  Where do HTTP errors arrive?
+- 4  How do we cancel old work?
+- 5  Is an empty array a failure?
 
-Answers: 1 After the click. 2 Call the signal getter with (). 3 checked. 4 Avoid mutating the old array and supply a new value to reactive consumers. 5 App, the nearest shared parent. For the form, FormsModule and ngSubmit handle the default browser navigation.
+Answers: 1 An Observable. 2 Subscribing. 3 The error callback. 4 Explicit unsubscribe for replacement and takeUntilDestroyed for owner destruction. 5 No, an empty array is valid success. Ask how this differs from plain fetch: unsuccessful HTTP status requires response.ok checking there.
 
 ## Project reading order
 
@@ -61,10 +62,11 @@ Answers: 1 After the click. 2 Call the signal getter with (). 3 checked. 4 Avoid
 2. src/app/app.component.ts and its template: composition and parent state.
 3. src/app/models/product.model.ts and data/products.ts: shape and initial lesson data.
 4. src/app/components/: reusable templates with comments.
+5. src/app/services/ and data/: requests and runtime validation.
 
 ## Teaching material
 
-PPT, trainer notes and validation report: training/angular/day-3/ from the repository root (../../training/angular/day-3/ from this project folder). Coverage mapping: training/angular/TOPIC_COVERAGE.md. Optional reference topics supplement the one-hour lesson. The official TCS E1 syllabus was not supplied; course IDs are references provided by the trainer.
+PPT, trainer notes and validation report: training/angular/day-4/ from the repository root (../../training/angular/day-4/ from this project folder). Coverage mapping: training/angular/TOPIC_COVERAGE.md. Optional reference topics supplement the one-hour lesson. The official TCS E1 syllabus was not supplied; course IDs are references provided by the trainer.
 
 ## Local production preview
 
@@ -78,9 +80,11 @@ Open http://127.0.0.1:8080. Day 5 uses hash routes for a simple static preview. 
 ## Sources
 
 - https://angular.dev/guide/components
+- https://angular.dev/guide/http/making-requests
 - https://angular.dev/guide/signals
-- https://angular.dev/guide/templates/event-listeners
-- https://angular.dev/guide/components/outputs
-- https://angular.dev/guide/templates/binding
-- https://angular.dev/guide/forms/template-driven-forms
-- https://angular.dev/guide/components/inputs
+- https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+- https://angular.dev/reference/configs/workspace-config
+- https://angular.dev/guide/components/lifecycle
+- https://angular.dev/guide/di
+- https://angular.dev/guide/templates/control-flow
+- https://rxjs.dev/guide/observable

@@ -1,6 +1,17 @@
 <main class="page">
-  <app-page-header day="03" title="Product Catalog with a cart"
-    subtitle="Signals, computed filters, output events and a local form." date="14 October 2026" />
+  <app-page-header day="04" title="Product Catalog with data loading"
+    subtitle="Services, HttpClient, Observables and loading/error states." date="15 October 2026" />
+  @if (status() === 'loading') { <p class="request-state" role="status">Loading products…</p> }
+  @if (status() === 'error') {
+    <section class="request-state request-error" aria-labelledby="error-heading">
+      <h2 id="error-heading">Could not load products</h2><p role="alert">{{ error() }}</p>
+      <button type="button" (click)="loadProducts()">Retry</button>
+    </section>
+  }
+  @if (status() === 'success' && products().length === 0) {
+    <p class="request-state" role="status">No products are available yet.</p>
+  }
+  @if (status() === 'success' && products().length > 0) {
   <app-product-summary [products]="products()" />
   <app-section title="Shop products" headingId="catalog-heading">
     <app-filter-bar [search]="search()" [category]="category()" [onlyInStock]="onlyInStock()"
@@ -13,6 +24,7 @@
     <app-cart-panel [cart]="cart()" [total]="cartTotal()" (remove)="removeFromCart($event)" (clear)="clearCart()" />
   </app-section>
   <app-section title="Form practice" headingId="note-heading"><app-practice-note /></app-section>
-  <aside class="exercise"><h2>Your turn</h2><p>Add a Show categories checkbox using a boolean signal.</p>
-    <p>Filters preserve the cart. Local state resets on reload.</p></aside>
+  }
+  <aside class="exercise"><h2>Your turn</h2><p>Change Notebook's JSON price to ₹100, reload and check the ₹600 cart.</p>
+    <p>The local HTTP resource needs no external API. Cart and note reset on reload.</p></aside>
 </main>
