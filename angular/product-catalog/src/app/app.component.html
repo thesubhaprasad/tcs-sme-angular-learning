@@ -1,6 +1,6 @@
 <main class="page">
-  <app-page-header day="04" title="Product Catalog with data loading"
-    subtitle="Services, HttpClient, Observables and loading/error states." date="15 October 2026" />
+  <app-page-header day="05" title="Product Catalog final mini-project"
+    subtitle="Reusable state service, reactive forms and a practice order preview." date="16 October 2026" />
   @if (status() === 'loading') { <p class="request-state" role="status">Loading products…</p> }
   @if (status() === 'error') {
     <section class="request-state request-error" aria-labelledby="error-heading">
@@ -23,8 +23,12 @@
   <app-section title="Your cart" headingId="cart-heading">
     <app-cart-panel [cart]="cart()" [total]="cartTotal()" (remove)="removeFromCart($event)" (clear)="clearCart()" />
   </app-section>
+  <app-section title="Practice order" headingId="order-heading"><app-order-form [cart]="cart()" /></app-section>
   <app-section title="Form practice" headingId="note-heading"><app-practice-note /></app-section>
   }
-  <aside class="exercise"><h2>Your turn</h2><p>Change Notebook's JSON price to ₹100, reload and check the ₹600 cart.</p>
-    <p>The local HTTP resource needs no external API. Cart and note reset on reload.</p></aside>
+  <aside class="exercise"><h2>Your turn</h2><p>Add a required Delivery city field to the reactive practice order form.</p>
+    <p>The preview is a local snapshot. All UI state resets on reload.</p></aside>
+  <!-- Optional routing practice leaves the shared catalog/cart mounted above the outlet. -->
+  <nav aria-label="Learning navigation"><a routerLink="/">Practice home</a> · <a routerLink="/courses">Course references</a></nav>
+  <router-outlet />
 </main>

@@ -1,10 +1,10 @@
-# Angular Product Catalog · Day 4
+# Angular Product Catalog · Day 5
 
 Trainer: Subha Prasad, TCS Assets Consultant (C3A).
-15 October 2026, 10:00–11:00 AM IST, Microsoft Teams.
-Branch: `tcs-sme-angular/day-four`.
+16 October 2026, 10:00–11:00 AM IST, Microsoft Teams.
+Branch: `tcs-sme-angular/day-five`.
 
-HttpClient, dependency injection, typed boundary validation, loading/error/empty/success states and retry.
+App-scoped CatalogStore, pure order helpers, reactive form validation, captured order preview and optional course routes.
 
 ## Setup and run
 
@@ -23,38 +23,40 @@ npm run check:day-one
 npm run check:day-two
 npm run check:day-three
 npm run check:day-four
+npm run check:day-five
 npm run build
 ```
 
-The checks run pure JavaScript/TypeScript lesson assertions. Build checks Angular templates and TypeScript. The browser workflow has also been checked; see training/angular/day-4/VALIDATION.md.
+The checks run pure JavaScript/TypeScript lesson assertions. Build checks Angular templates and TypeScript. The browser workflow has also been checked; see training/angular/day-5/VALIDATION.md.
 
 ## Start state and demonstration
 
 4 products: Notebook ₹80 in stock, Pen ₹20 out of stock, Bag ₹500 in stock, Bottle ₹250 out of stock. Summary: 4 total, 2 in stock, 2 out of stock.
 Add Notebook and Bag: cart 2 items, ₹580. Remove Notebook: 1 item, ₹500. Out-of-stock and duplicate additions are blocked. Search trims whitespace and ignores case.
 Products are loaded from public/products.json through ProductService. Empty JSON array is a valid empty catalog. Missing/invalid JSON, wrong schema, duplicate IDs and HTTP failures show error state; Retry reloads the resource. Filters do not refetch.
-
+Submit with an empty cart, then with a short name, to show validation. With Notebook and Bag and name Demo Customer, preview total is ₹580. Removing Notebook changes the cart to ₹500 but keeps the submitted snapshot at ₹580 until resubmission. Reset clears only the order form and preview. Nothing is ordered or paid. Course references use hash routes and preserve the catalog shell.
 
 ## Learner exercise
 
-Changing JSON and the empty state
+A required Delivery city field
 
-- Change Notebook’s price from 80 to 100.
-- Reload and add Notebook + Bag: ₹600.
-- Try [] and explain the success message.
-- Restore the original resource.
+- Add a nonNullable city FormControl.
+- Require its trimmed value.
+- Add city to the draft helper and interface.
+- Display it in the preview.
+- Reset should clear it with the other controls.
 
-Give learners time to change Notebook from ₹80 to ₹100. Reload, add Notebook and Bag, and expect ₹600. Try [] and explain valid empty success. Restore the original ₹80 price and four products. Optional extension: add P-105 Pencil, ₹10, Stationery, inStock true. Counts become 5/3/2 and Notebook+Bag+Pencil totals ₹590.
+Learner task: add a nonNullable city control with trimmed required validation, pass it to the helper, extend OrderDraft, render it and reset it. Blank city must block, Kolkata must appear, reset must clear, and Notebook+Bag must still total ₹580. Add city-specific accessible feedback. The starter leaves this feature for learners.
 
 ## Knowledge check
 
-- 1  What does HttpClient.get return?
-- 2  What starts its request?
-- 3  Where do HTTP errors arrive?
-- 4  How do we cancel old work?
-- 5  Is an empty array a failure?
+- 1  What decides service instance sharing?
+- 2  What does formControlName connect?
+- 3  What blocks invalid submission?
+- 4  Why can a snapshot stay at ₹580?
+- 5  Does ng build publish the app?
 
-Answers: 1 An Observable. 2 Subscribing. 3 The error callback. 4 Explicit unsubscribe for replacement and takeUntilDestroyed for owner destruction. 5 No, an empty array is valid success. Ask how this differs from plain fetch: unsuccessful HTTP status requires response.ok checking there.
+Answers: 1 Provider scope. 2 A named reactive control. 3 Validators plus the helper message and early return. 4 Items and total were copied at submission time. 5 No, ng build writes local files. Also compare raw preventDefault with Angular ngSubmit.
 
 ## Project reading order
 
@@ -63,10 +65,11 @@ Answers: 1 An Observable. 2 Subscribing. 3 The error callback. 4 Explicit unsubs
 3. src/app/models/product.model.ts and data/products.ts: shape and initial lesson data.
 4. src/app/components/: reusable templates with comments.
 5. src/app/services/ and data/: requests and runtime validation.
+6. src/app/data/order-draft.ts and order-form component: form and copied snapshot.
 
 ## Teaching material
 
-PPT, trainer notes and validation report: training/angular/day-4/ from the repository root (../../training/angular/day-4/ from this project folder). Coverage mapping: training/angular/TOPIC_COVERAGE.md. Optional reference topics supplement the one-hour lesson. The official TCS E1 syllabus was not supplied; course IDs are references provided by the trainer.
+PPT, trainer notes and validation report: training/angular/day-5/ from the repository root (../../training/angular/day-5/ from this project folder). Coverage mapping: training/angular/TOPIC_COVERAGE.md. Optional reference topics supplement the one-hour lesson. The official TCS E1 syllabus was not supplied; course IDs are references provided by the trainer.
 
 ## Local production preview
 
@@ -80,11 +83,13 @@ Open http://127.0.0.1:8080. Day 5 uses hash routes for a simple static preview. 
 ## Sources
 
 - https://angular.dev/guide/components
-- https://angular.dev/guide/http/making-requests
-- https://angular.dev/guide/signals
-- https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
-- https://angular.dev/reference/configs/workspace-config
-- https://angular.dev/guide/components/lifecycle
+- https://angular.dev/guide/forms/reactive-forms
 - https://angular.dev/guide/di
+- https://angular.dev/guide/components/lifecycle
+- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide
 - https://angular.dev/guide/templates/control-flow
-- https://rxjs.dev/guide/observable
+- https://angular.dev/tools/cli/deployment
+- https://angular.dev/guide/routing/define-routes
+- https://angular.dev/guide/routing/show-routes-with-outlets
+- https://angular.dev/guide/http/interceptors
+- https://angular.dev/guide/http/testing

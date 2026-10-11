@@ -3,14 +3,14 @@
 Trainer: Subha Prasad · TCS Assets Consultant (C3A)
 12–16 October 2026 · 10–11 AM IST · Microsoft Teams
 
-A standalone Angular training repository for JavaScript beginners, using the same commerce Product Catalog example throughout. This branch contains Day 4. React lives separately at https://github.com/thesubhaprasad/tcs-sme-reactjs-learning.
+A standalone Angular training repository for JavaScript beginners, using the same commerce Product Catalog example throughout. This branch contains Day 5. React lives separately at https://github.com/thesubhaprasad/tcs-sme-reactjs-learning.
 
 ## Start the hands-on project
 
 ```sh
 git clone git@github.com:thesubhaprasad/tcs-sme-angular-learning.git
 cd tcs-sme-angular-learning
-git checkout tcs-sme-angular/day-four
+git checkout tcs-sme-angular/day-five
 cd angular/product-catalog
 npm ci
 npm start

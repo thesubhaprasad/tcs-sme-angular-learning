@@ -1,5 +1,8 @@
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideHttpClient } from '@angular/common/http';
+import { provideRouter, withHashLocation } from '@angular/router';
 import { AppComponent } from './app/app.component';
-// Register HttpClient with dependency injection for the app's product service.
-bootstrapApplication(AppComponent, { providers: [provideHttpClient()] }).catch(error => console.error(error));
+import { routes } from './app/app.routes';
+// Register the HTTP and optional routing features alongside standalone bootstrapping.
+bootstrapApplication(AppComponent, { providers: [provideHttpClient(), provideRouter(routes, withHashLocation())] })
+  .catch(error => console.error(error));

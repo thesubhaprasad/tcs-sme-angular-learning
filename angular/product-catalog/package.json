@@ -9,7 +9,8 @@
     "check:day-one": "node --experimental-strip-types src/lessons/day-one.mjs",
     "check:day-two": "node --experimental-strip-types src/lessons/day-two.mjs",
     "check:day-three": "node --experimental-strip-types src/lessons/day-three.mjs",
-    "check:day-four": "node --experimental-strip-types src/lessons/day-four.mjs"
+    "check:day-four": "node --experimental-strip-types src/lessons/day-four.mjs",
+    "check:day-five": "node --experimental-strip-types src/lessons/day-five.mjs"
   },
   "dependencies": {
     "@angular/common": "22.2.2",
