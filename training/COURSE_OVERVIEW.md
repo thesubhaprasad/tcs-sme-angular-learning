@@ -11,4 +11,4 @@ The same Product Catalog develops across five cumulative branches. Start at day-
 - Day 4: tcs-sme-angular/day-four · 34 slides · 60 live minutes
 - Day 5: tcs-sme-angular/day-five · 35 slides · 60 live minutes
 
-Hands-on project: angular/product-catalog. Material: training/angular/day-1 through day-5. React training is maintained separately in https://github.com/thesubhaprasad/tcs-sme-reactjs-learning. TOPIC_COVERAGE.md maps every original React slide and records framework differences. Reference slides are after-class reading.
+Hands-on project: the repository root. Material: training/day-1 through day-5. React training is maintained separately in https://github.com/thesubhaprasad/tcs-sme-reactjs-learning. TOPIC_COVERAGE.md maps every original React slide and records framework differences. Reference slides are after-class reading.
