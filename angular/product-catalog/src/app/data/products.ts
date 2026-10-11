@@ -22,5 +22,12 @@ export const PRODUCTS: readonly Product[] = [
     "price": 500,
     "category": "Accessories",
     "inStock": true
+  },
+  {
+    "id": "P-104",
+    "name": "Bottle",
+    "price": 250,
+    "category": "Accessories",
+    "inStock": false
   }
 ];

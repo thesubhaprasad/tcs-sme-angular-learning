@@ -1,10 +1,10 @@
-# Angular Product Catalog · Day 1
+# Angular Product Catalog · Day 2
 
 Trainer: Subha Prasad, TCS Assets Consultant (C3A).
-12 October 2026, 10:00–11:00 AM IST, Microsoft Teams.
-Branch: `tcs-sme-angular/day-one`.
+13 October 2026, 10:00–11:00 AM IST, Microsoft Teams.
+Branch: `tcs-sme-angular/day-two`.
 
-Static product catalog; JavaScript values, arrays and functions; TypeScript interface and standalone component.
+Reusable components, input signals, projection, pipes and template control flow.
 
 ## Setup and run
 
@@ -20,37 +20,39 @@ Open http://127.0.0.1:4200. From this folder, run:
 
 ```sh
 npm run check:day-one
+npm run check:day-two
 npm run build
 ```
 
-The checks run pure JavaScript/TypeScript lesson assertions. Build checks Angular templates and TypeScript. The browser workflow has also been checked; see training/angular/day-1/VALIDATION.md.
+The checks run pure JavaScript/TypeScript lesson assertions. Build checks Angular templates and TypeScript. The browser workflow has also been checked; see training/angular/day-2/VALIDATION.md.
 
 ## Start state and demonstration
 
-3 products: Notebook ₹80 in stock, Pen ₹20 out of stock, Bag ₹500 in stock. Summary: 3 total, 2 in stock.
+4 products: Notebook ₹80 in stock, Pen ₹20 out of stock, Bag ₹500 in stock, Bottle ₹250 out of stock. Summary: 4 total, 2 in stock, 2 out of stock.
 
 
 
 
 ## Learner exercise
 
-A fourth product on the screen
+A brand on every card
 
-- Add Bottle in the data file.
-- Save and inspect the browser.
-- Explain why both counts change.
+- Add brand to the product objects.
+- Add showBrand = input(true) to the card.
+- Forward it from ProductList.
+- Show the brand with @if.
 
-Use a unique ID and a comma between objects. Give learners time to find the file, edit and describe @for. Restore the prepared data before branch switching. Day 2 intentionally has Bottle out of stock.
+The Product interface already includes optional brand. Use fictional brand text. Learners add the field, input forwarding and display. The starter intentionally leaves that work.
 
 ## Knowledge check
 
-- 1  Which keyword allows reassignment?
-- 2  Which method transforms every array item?
-- 3  Which method selects matching items?
-- 4  How does Angular display a field?
-- 5  What identifies each repeated product?
+- 1  How does a child receive data?
+- 2  Can it set an InputSignal?
+- 3  Which placeholder projects nested content?
+- 4  What does track identify?
+- 5  Does @if insert zero as text?
 
-Answers: let, map, filter, interpolation {{ field }}, track product.id. Ask why a template component must appear in the parent imports.
+Answers: input, no, ng-content, stable item identity, no. Also ask whether track becomes a child input: no.
 
 ## Project reading order
 
@@ -61,7 +63,7 @@ Answers: let, map, filter, interpolation {{ field }}, track product.id. Ask why 
 
 ## Teaching material
 
-PPT, trainer notes and validation report: training/angular/day-1/ from the repository root (../../training/angular/day-1/ from this project folder). Coverage mapping: training/angular/TOPIC_COVERAGE.md. Optional reference topics supplement the one-hour lesson. The official TCS E1 syllabus was not supplied; course IDs are references provided by the trainer.
+PPT, trainer notes and validation report: training/angular/day-2/ from the repository root (../../training/angular/day-2/ from this project folder). Coverage mapping: training/angular/TOPIC_COVERAGE.md. Optional reference topics supplement the one-hour lesson. The official TCS E1 syllabus was not supplied; course IDs are references provided by the trainer.
 
 ## Local production preview
 
@@ -75,11 +77,10 @@ Open http://127.0.0.1:8080. Day 5 uses hash routes for a simple static preview. 
 ## Sources
 
 - https://angular.dev/guide/components
-- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide
-- https://angular.dev/reference/versions
-- https://angular.dev/guide/templates
-- https://angular.dev/guide/templates/binding
 - https://angular.dev/guide/components/inputs
+- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide
+- https://angular.dev/guide/components/content-projection
 - https://angular.dev/guide/templates/control-flow
-- https://www.typescriptlang.org/docs/handbook/2/everyday-types.html
-- https://www.typescriptlang.org/docs/handbook/2/classes.html
+- https://angular.dev/guide/templates
+- https://angular.dev/guide/templates/pipes
+- https://angular.dev/guide/components/lifecycle

@@ -1,18 +1,14 @@
 <main class="page">
-  <header class="hero"><p class="eyebrow">TCS SME TRAINING · ANGULAR DAY 01</p>
-    <h1>Product Catalog</h1><p>JavaScript and TypeScript foundations with a first Angular screen.</p>
-    <p class="trainer">Trainer: {{ trainer }} · 12 October 2026</p></header>
-  <div class="summary" aria-label="Product summary">
-    <p><strong>{{ products.length }}</strong> Total products</p>
-    <p><strong>{{ inStockCount }}</strong> In stock</p>
-  </div>
-  <section aria-labelledby="catalog-heading"><h2 id="catalog-heading">Shop products</h2>
-    <div class="product-grid">
-      <!-- @for repeats a template. track identifies items using their stable IDs. -->
-      @for (product of products; track product.id) { <app-product-card [product]="product" /> }
-    </div>
-  </section>
-  <aside class="exercise"><h2>Your turn</h2>
-    <p>Add Bottle at ₹250, Accessories, in stock, using ID P-104.</p>
-    <p>Expected counts after the exercise: 4 total, 3 in stock.</p></aside>
+  <app-page-header day="02" title="Product Catalog with reusable components"
+    subtitle="Inputs, content projection, conditions and stable lists." date="13 October 2026" />
+  <app-product-summary [products]="products" />
+  <app-section title="Shop products" headingId="catalog-heading">
+    <!-- The wrapper projects both this paragraph and the reusable product list. -->
+    <p class="stock-note">Stock selection: {{ selectedStock }}</p>
+    <app-product-list [products]="visibleProducts" [showCategory]="showCategory" />
+  </app-section>
+  <app-section title="Learning notes" headingId="notes-heading">
+    <p>Inputs travel down. The same Section wrapper displays different nested content.</p>
+  </app-section>
+  <aside class="exercise"><h2>Your turn</h2><p>Add a brand and a showBrand input, then forward it through ProductList.</p></aside>
 </main>

@@ -6,7 +6,8 @@
   "scripts": {
     "start": "ng serve --host 127.0.0.1",
     "build": "ng build",
-    "check:day-one": "node --experimental-strip-types src/lessons/day-one.mjs"
+    "check:day-one": "node --experimental-strip-types src/lessons/day-one.mjs",
+    "check:day-two": "node --experimental-strip-types src/lessons/day-two.mjs"
   },
   "dependencies": {
     "@angular/common": "22.2.2",
