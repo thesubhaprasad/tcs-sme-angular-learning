@@ -1,0 +1,26 @@
+import type { Product } from '../models/product.model';
+
+// Fictional product data. Unique IDs remain stable when the list is reordered.
+export const PRODUCTS: readonly Product[] = [
+  {
+    "id": "P-101",
+    "name": "Notebook",
+    "price": 80,
+    "category": "Stationery",
+    "inStock": true
+  },
+  {
+    "id": "P-102",
+    "name": "Pen",
+    "price": 20,
+    "category": "Stationery",
+    "inStock": false
+  },
+  {
+    "id": "P-103",
+    "name": "Bag",
+    "price": 500,
+    "category": "Accessories",
+    "inStock": true
+  }
+];

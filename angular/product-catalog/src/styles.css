@@ -1,0 +1,70 @@
+/* Shared colours and spacing keep the page readable during screen sharing. */
+:root { font-family: Arial, sans-serif; color: #163047; background: #f3f6fa; font-synthesis: none; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+.page { max-width: 1120px; margin: auto; padding: 40px 24px; }
+/* The hero introduces the training and the example application. */
+.hero { background: #143749; color: white; border-radius: 20px; padding: 40px; }
+.eyebrow { color: #92e8df; font-size: 13px; letter-spacing: 2px; }
+h1 { font-size: clamp(32px, 5vw, 52px); margin: 16px 0; }
+.trainer { opacity: .8; }
+/* Counts come from JavaScript expressions, while CSS controls appearance. */
+.summary { display: flex; gap: 36px; padding: 20px 0; }
+.summary strong { color: #087f83; font-size: 32px; margin-right: 8px; }
+/* Auto-fit preserves readable cards on smaller screens. */
+.product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-top: 24px; }
+.product-card { padding: 24px; background: white; border: 1px solid #dbe4ec; border-radius: 16px; }
+.product-id { color: #62798b; font-size: 13px; }
+.product-card h3 { margin: 16px 0 10px; }
+.status { display: inline-block; padding: 6px 12px; border-radius: 20px; font-size: 14px; }
+.in-stock { background: #daf2e9; color: #176144; }
+.out-of-stock { background: #fff1d5; color: #77521b; }
+/* The practice instructions remain part of the page, below the sample data. */
+.exercise { margin-top: 32px; border-left: 4px solid #0b8b91; padding: 4px 24px; }
+/* Day 2 sections use the same wrapper with different nested content. */
+.content-section { margin-top: 28px; }
+.stock-note, .category { color: #536b7b; font-size: 14px; }
+.empty-state { padding: 20px; background: #e8eef5; border: 1px dashed #a6bbc9; border-radius: 12px; }
+/* Allow summary statistics to wrap instead of overflowing a narrow screen. */
+.summary { flex-wrap: wrap; }
+/* Prices remain visible when the optional category paragraph is hidden. */
+.price { font-size: 24px; font-weight: bold; color: #087f83; }
+
+/* Day 3 uses semantic controls with visible keyboard focus. */
+button, input, select { font: inherit; }
+button { background: #087f83; color: white; border: 1px solid #087f83; border-radius: 8px; padding: 10px 16px; cursor: pointer; }
+button:hover:not(:disabled) { background: #06666a; }
+button:disabled { opacity: .55; cursor: not-allowed; }
+button:focus-visible, input:focus-visible, select:focus-visible { outline: 3px solid #bd6b13; outline-offset: 3px; }
+input:not([type="checkbox"]), select { display: block; padding: 10px; margin-top: 8px; border: 1px solid #9eafbc; border-radius: 8px; background: white; color: #163047; width: 100%; }
+.filter-bar { display: flex; flex-wrap: wrap; align-items: end; gap: 20px; padding: 20px; background: #e8eef5; border-radius: 12px; }
+.filter-bar > label:first-child { flex: 1 1 240px; }
+.filter-bar > label:nth-child(2) { flex: 0 1 190px; }
+.checkbox-label { display: flex; gap: 8px; align-items: center; padding-bottom: 10px; }
+input[type="checkbox"] { width: 18px; height: 18px; accent-color: #087f83; }
+.secondary-button { background: white; color: #163047; border-color: #9eafbc; }
+.secondary-button:hover:not(:disabled) { background: #e8eef5; }
+.add-button { display: block; width: 100%; margin-top: 18px; }
+.result-count { color: #536b7b; }
+.cart-panel { padding: 24px; background: white; border: 1px solid #dbe4ec; border-radius: 16px; }
+.cart-summary { margin-top: 0; font-size: 20px; }
+.cart-list { list-style: none; padding: 0; }
+.cart-list li { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #dbe4ec; }
+.note-form { max-width: 640px; }
+.note-form button { margin-top: 16px; }
+
+/* Day 4 request messages stay readable on desktop and mobile. */
+.request-state { padding: 24px; margin-top: 28px; background: white; border: 1px solid #dbe4ec; border-radius: 12px; }
+.request-error { border-color: #be6a3d; }
+.request-error h2 { margin-top: 0; }
+
+/* Day 5 keeps the order form accessible and usable on small screens. */
+textarea { display: block; width: 100%; margin-top: 8px; padding: 10px; font: inherit; border: 1px solid #9eafbc; border-radius: 8px; resize: vertical; }
+textarea:focus-visible { outline: 3px solid #bd6b13; outline-offset: 3px; }
+.order-practice .note-form label { display: block; margin-top: 16px; }
+.form-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.order-preview { margin-top: 24px; padding: 24px; background: #e8eef5; border-radius: 12px; }
+.draft-total { font-size: 20px; font-weight: bold; }
+
+/* Angular component hosts behave as blocks within the existing catalog layout. */
+app-root, app-product-card, app-product-list, app-section, app-cart-panel, app-filter-bar, app-product-summary, app-page-header, app-practice-note, app-order-form { display: block; }
